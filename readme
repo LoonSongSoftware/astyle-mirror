@@ -1,15 +1,24 @@
+For easy-download links:
+
+http://wbraswell.github.io/astyle-mirror/
+
+
 Download the file for your platform.
 
-astyle_2.05_macosx.tar.gz for Mac OS X.
+astyle_2.06_macosx.tar.gz for Mac OS X.
 
-astyle_2.05_linux.tar.gz for Linux.
+astyle_2.06_linux.tar.gz for Linux.
 
-AStyle_2.05_windows.zip for Windows.
+AStyle_2.06_windows.zip for Windows.
 Use if you are running Windows Vista, 7, 8, 8.1, or 10.
 
-AStyle_2.05_windows_xp.zip for Windows XP.
+AStyle_2.06_windows_xp.zip for Windows XP.
 Use if you are running Windows XP, otherwise use the
 above Windows download.
+
+astyle-2.05.1-1.el7.centos.x86_64.rpm for CentOS 7.
+CentOS 7 RPMs, thanks to Frank Cox of the Melville Theatre in Melville, Saskatchewan, Canada
+http://www.melvilletheatre.com/articles/el7/
 
 Install instructions, release notes, news, and documentation
 are available at the astyle website and are included in the
