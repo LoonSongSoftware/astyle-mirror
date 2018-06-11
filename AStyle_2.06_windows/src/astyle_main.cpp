@@ -710,6 +710,14 @@ bool ASConsole::getPreserveDate() const
 void ASConsole::setBypassBrowserOpen(bool state)
 { bypassBrowserOpen = state; }
 
+/**
+ Get the parameter portion of a string.
+ This function returns the portion of a string following a specified designator. For example,
+ calling getParam("test=56","test=") will return with a string containing "56".
+ @param arg The full argument string to be processed.
+ @param op The initial bit of the argument string that should be ignored.
+ @return The portion of the "arg" string that follows the "op" string.
+ */
 string ASConsole::getParam(const string& arg, const char* op)
 {
 	return arg.substr(strlen(op));
@@ -1975,47 +1983,51 @@ void ASConsole::processFiles()
 		printVerboseStats(startTime);
 }
 
-// process options from the command line and options file
-// build the vectors fileNameVector, excludeVector, optionsVector, and fileOptionsVector
-void ASConsole::processOptions(vector<string>& argvOptions)
-{
+/**
+ Process options from the command line and options file
+ @detail This function...
+ @param Vector of strings representing the options supplied on the command line.
+ */
+void ASConsole::processOptions(vector<string>& argvOptions) {
+
 	string arg;
 	bool ok = true;
 	bool shouldParseOptionsFile = true;
 
-	// get command line options
+	// Iterate through the argvOptions vector to process command line options
 	for (size_t i = 0; i < argvOptions.size(); i++)
 	{
 		arg = argvOptions[i];
 
-		if ( isOption(arg, "-I" )
-		        || isOption(arg, "--ascii") )
+		if ( isOption(arg, "-I" ) || isOption(arg, "--ascii") )
 		{
+			// Displayed output should be ASCII only
 			useAscii = true;
 			setlocale(LC_ALL, "C");		// use English decimal indicator
 			localizer.setLanguageFromName("en");
 		}
 		else if ( isOption(arg, "--options=none") )
 		{
+			// Don't process the options file (even if it is present)
 			shouldParseOptionsFile = false;
 		}
 		else if ( isParamOption(arg, "--options=") )
 		{
+			// Process options from the specified options file name
 			optionsFileName = getParam(arg, "--options=");
 			optionsFileRequired = true;
 			if (optionsFileName.empty())
 				setOptionsFileName(" ");
 		}
-		else if ( isOption(arg, "-h")
-		          || isOption(arg, "--help")
-		          || isOption(arg, "-?") )
+		else if ( isOption(arg, "-h") || isOption(arg, "--help") || isOption(arg, "-?") )
 		{
+			// Show help text and exit
 			printHelp();
 			exit(EXIT_SUCCESS);
 		}
-		else if ( isOption(arg, "-!")
-		          || isOption(arg, "--html") )
+		else if ( isOption(arg, "-!") || isOption(arg, "--html") )
 		{
+			// Display "astyle.html" in the default browser and exit
 			launchDefaultBrowser();
 			exit(EXIT_SUCCESS);
 		}

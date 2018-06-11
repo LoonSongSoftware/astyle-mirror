@@ -1827,8 +1827,13 @@ void ASFormatter::setRemoveBracketsMode(bool state)
 }
 
 /**
- * set the bracket formatting mode.
- * options:
+ Set the bracket formatting mode.
+ This specifies where brackets will appear in the file. Options:
+ NONE_MODE		- 
+ ATTACH_MODE	- attach opening brace to the end of the line
+ BREAK_MODE		- insert a line break between the line and the opening brace
+ LINUX_MODE		- attach opening braces except for functions, classes and namespaces
+ RUN_IN_MODE	- break before opening brace, with following code on the same line as the brace
  *
  * @param mode         the bracket formatting mode.
  */
@@ -4905,8 +4910,7 @@ void ASFormatter::formatArrayBrackets(BracketType bracketType, bool isOpeningArr
 			}
 			else if (bracketFormatMode == NONE_MODE)
 			{
-				if (currentLineBeginsWithBracket
-				        && charNum == (int) currentLineFirstBracketNum)
+				if (currentLineBeginsWithBracket && charNum == (int) currentLineFirstBracketNum)
 				{
 					appendCurrentChar();                // don't attach
 				}

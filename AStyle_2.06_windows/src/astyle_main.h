@@ -268,6 +268,11 @@ private:    // variables
 	vector<string> fileName;            // files to be processed including path
 
 public:     // variables
+
+	/**
+	 ASConsole constructor.
+	 @param An ASFormatter object.
+	 */
 	explicit ASConsole(ASFormatter& formatterArg) : formatter(formatterArg)
 	{
 		// command line options
